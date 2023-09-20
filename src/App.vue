@@ -14,6 +14,11 @@
 									{{ score }}
 								</span>
 							</div>
+							<div class="text-h6 text-center mt-2">
+								Record: <span class="text-h5 font-weight-bold">
+									{{ top }}
+								</span>
+							</div>
 						</v-col>
 					</v-row>
 				</v-card-text>
@@ -95,6 +100,19 @@
 				</v-btn>
 			</v-col>
 		</v-row>
+		<v-divider class="mt-12 mb-6" />
+		<v-row>
+			<v-col class="text-center">
+				<div class="d-inline-block mx-1" v-for="(item, index) in links" :key="index">
+					<v-tooltip :text="item.text">
+						<template v-slot:activator="{ props }">
+							<v-btn v-bind="props" :href="item.link" target="_blank" rel="noopener noreferrer" :icon="item.icon"
+								:color="item.color" />
+						</template>
+					</v-tooltip>
+				</div>
+			</v-col>
+		</v-row>
 	</v-container>
 </template>
 
@@ -148,6 +166,7 @@ export default {
 			first: 0,
 			second: 0,
 			res: 0,
+			top: 0,
 			options: [],
 			operation: multiplicacion,
 			difficulty: 0,
@@ -228,8 +247,32 @@ export default {
 					link: "https://jfourcee.web.app/#/",
 					text: "Mi pagina",
 					icon: "mdi-web",
-					color: "black",
-				}
+					color: "orange-darken-4",
+				},
+				{
+					link: "https://github.com/JU4N4LFR3D0/multiply",
+					text: "Repositorio de este proyecto",
+					icon: "mdi-github",
+					color: "#171515",
+				},
+				{
+					link: "https://www.youtube.com/channel/UCEdn80bp9gmYhrW2VQ27sYg",
+					text: "Mi canal",
+					icon: "mdi-youtube",
+					color: "#FF0000",
+				},
+				{
+					link: "https://www.facebook.com/ju4n4lfr3d0",
+					text: "Mi Facebook",
+					icon: "mdi-facebook",
+					color: "#0766FF",
+				},
+				{
+					link: "https://www.instagram.com/juanalfredocc22/",
+					text: "Mi Instagram",
+					icon: "mdi-instagram",
+					color: "#E1306C",
+				},
 			]
 		}
 	},
@@ -279,7 +322,7 @@ export default {
 			let dummy_first = 0;
 			let dummy_second = 0;
 			let overflow = 0;
-			while (options.length < difficulty.dummy) {
+			while (options.length < difficulty.dummy + 1) {
 
 				overflow++;
 
@@ -329,6 +372,17 @@ export default {
 				this.question();
 				correct_audio.play();
 			} else {
+				if(localStorage.getItem('top_score')){
+					let top = +localStorage.getItem('top_score');
+					if(top <= this.score){
+						localStorage.setItem('top_score', this.score);
+						top = this.score;
+					}
+					this.top = top;
+				} else {
+					localStorage.setItem('top_score', this.score);
+					this.top = this.score;
+				}
 				this.finish_dialog = true;
 				wrong_audio.play();
 			}
