@@ -5,8 +5,8 @@
 				<v-card-text>
 					<v-row no-gutters>
 						<v-col cols="4">
-							<v-img v-if="score > 0" src="src/assets/2.png" height="300px" class="ma-2" />
-							<v-img v-else src="src/assets/3.png" height="300px" class="ma-2" />
+							<v-img v-if="score > 0" src="assets/2.png" height="300px" class="ma-2" />
+							<v-img v-else src="assets/3.png" height="300px" class="ma-2" />
 						</v-col>
 						<v-col cols="8" class="d-flex align-center justify-center flex-column">
 							<div class="text-h3 text-center">
@@ -26,7 +26,7 @@
 		</v-dialog>
 		<v-row class="py-4">
 			<v-col cols="12" lg="6" class="d-flex align-center justify-center">
-				<v-img :src="'src/assets/title.png'" max-height="90px" max-width="70%" />
+				<v-img :src="'assets/title.png'" max-height="90px" max-width="70%" />
 				<v-btn @click="share()" icon="mdi-share-variant" variant="text" />
 			</v-col>
 			<v-col cols="12" lg="6" class="d-flex flex-column flex-lg-row justify-center align-center">
@@ -82,8 +82,8 @@
 				</v-btn>
 			</v-col>
 			<v-col cols="12" md="3" class="d-flex align-center justify-center">
-				<v-img src="src/assets/4.png" class="d-none d-md-flex" max-height="300px" />
-				<v-img src="src/assets/4.png" class="d-flex d-md-none" max-height="150px" />
+				<v-img src="assets/4.png" class="d-none d-md-flex" max-height="300px" />
+				<v-img src="assets/4.png" class="d-flex d-md-none" max-height="150px" />
 			</v-col>
 		</v-row>
 		<v-divider class="mt-4 mb-6" />
@@ -123,10 +123,10 @@ const resta = 1;
 const multiplicacion = 2;
 const division = 3;
 
-const correct_audio = new Audio("src/assets/sound/correct.mp3");
+const correct_audio = new Audio("assets/sound/correct.mp3");
 correct_audio.volume = 0.5;
 
-const wrong_audio = new Audio("src/assets/sound/wrong.mp3");
+const wrong_audio = new Audio("assets/sound/wrong.mp3");
 
 const colors = [
 	'red-accent-4',
